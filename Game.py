@@ -50,6 +50,5 @@ def printStats():
 	rows = c.fetchall()
 	for r in rows:
 		print(r)
-initStats()
-printStats()
+menuChoice()
 
