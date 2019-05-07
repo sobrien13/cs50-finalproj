@@ -4,6 +4,7 @@ connection = sqlite3.connect("save.db")
 c = connection.cursor()
 c.execute("create table Character (name, strength, agi, intel)")
 def initStats():
+	#Writes character stats to save.db
 	name = input("What is your name?")
 	pts = 15
 	print("%s skill points remain.\n" % pts)
@@ -18,6 +19,7 @@ def initStats():
 	print("%s skill points remain.\n" % pts)
 	c.execute("insert into Character values(?, ?, ?, ?)", (name, strength, agi, intel))
 def printStats():
+	#Prints stats of all characters in save.db
 	c.execute("select * from Character")
 	rows = c.fetchall()
 	for r in rows:
