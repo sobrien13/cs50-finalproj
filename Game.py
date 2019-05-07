@@ -9,7 +9,7 @@ def menuChoice():
 	print("2: Load Game")
 	print("3: Exit")
 	a = int(input("Choose one."))
-	while a > 3 || a < 1:
+	while a > 3 or a < 1:
 		print("Py/Sqlite Text Based RPG.")
 		print("1: New Game")
 		print("2: Load Game")
@@ -31,7 +31,7 @@ def loadGame():
 	connection = sqlite3.connect(filename)
 def initStats():
 	#Writes character stats to save.db
-	name = input("What is your name?")
+	name = input("What is your name? ")
 	pts = 15
 	print("%s skill points remain.\n" % pts)
 	strength = int(input("Enter %s\'s STRENGTH stat (1-10) \n" % name))
