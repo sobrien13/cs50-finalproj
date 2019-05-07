@@ -3,18 +3,18 @@ import sqlite3
 connection = sqlite3.connect("save.db")
 c = connection.cursor()
 c.execute("create table Character (name, strength, agi, intel)")
-def menuChoice():
+def startMenu():
 	print("Py/Sqlite Text Based RPG.")
 	print("1: New Game")
 	print("2: Load Game")
 	print("3: Exit")
-	a = int(input("Choose one."))
+	a = int(input("Choose one.\n"))
 	while a > 3 or a < 1:
 		print("Py/Sqlite Text Based RPG.")
 		print("1: New Game")
 		print("2: Load Game")
 		print("3: Exit")
-		a = int(input("Choose one."))
+		a = int(input("Choose one.\n"))
 	# if a == x do y
 	if a == 1:
 		startNewGame()
@@ -26,7 +26,7 @@ def startNewGame():
 	print("Starting new game...")
 	initStats()
 def loadGame():
-	filename = input("Loading game...\nEnter savefile name ex: 'example'")
+	filename = input("Loading game...\nEnter savefile name ex: 'example'\n")
 	filename += ".db"
 	connection = sqlite3.connect(filename)
 def initStats():
@@ -50,5 +50,5 @@ def printStats():
 	rows = c.fetchall()
 	for r in rows:
 		print(r)
-menuChoice()
+startMenu()
 
