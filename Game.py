@@ -3,6 +3,32 @@ import sqlite3
 connection = sqlite3.connect("save.db")
 c = connection.cursor()
 c.execute("create table Character (name, strength, agi, intel)")
+def menuChoice():
+	print("Py/Sqlite Text Based RPG.")
+	print("1: New Game")
+	print("2: Load Game")
+	print("3: Exit")
+	a = int(input("Choose one."))
+	while a > 3 || a < 1:
+		print("Py/Sqlite Text Based RPG.")
+		print("1: New Game")
+		print("2: Load Game")
+		print("3: Exit")
+		a = int(input("Choose one."))
+	# if a == x do y
+	if a == 1:
+		startNewGame()
+	elif a == 2:
+		loadGame()
+	else:
+		exit()
+def startNewGame():
+	print("Starting new game...")
+	initStats()
+def loadGame():
+	filename = input("Loading game...\nEnter savefile name ex: 'example'")
+	filename += ".db"
+	connection = sqlite3.connect(filename)
 def initStats():
 	#Writes character stats to save.db
 	name = input("What is your name?")
@@ -26,3 +52,4 @@ def printStats():
 		print(r)
 initStats()
 printStats()
+
