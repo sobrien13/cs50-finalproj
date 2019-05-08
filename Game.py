@@ -8,7 +8,6 @@ from World import *
 class Game:
 	connection = sqlite3.connect("save.db")
 	c = connection.cursor()
-	c.execute("create table Character (name, strength, agi, intel)")
 	def main():
 		print("Py/Sqlite Text Based RPG.")
 		print("1: New Game")
