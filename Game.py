@@ -2,7 +2,9 @@
 #Handles all the database loading and interaction
 #Handles all essential UI
 import sqlite3
-import Character
+from Character import *
+from Enemy import *
+from World import *
 class Game:
 	connection = sqlite3.connect("save.db")
 	c = connection.cursor()
@@ -33,4 +35,6 @@ class Game:
 		filename = input("Loading game...\nEnter savefile name ex: 'example'\n")
 		filename += ".db"
 		connection = sqlite3.connect(filename)
+	w = World()
+	w.drawGrid()
 	main()

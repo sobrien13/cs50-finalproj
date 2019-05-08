@@ -8,12 +8,12 @@ class World:
 			["~", "~", "p", "~", "~"], 
 			["~", "~", "~", "~", "~"], 
 			["~", "~", "~", "~", "~"], ]
-	def getPlayerPos():
+	def getPlayerPos(self):
 		#Returns tuple which contains player position
 		#Should return 1,2
 		r = -1
 		c = -1
-		for row in world:
+		for row in self.grid:
 			r += 1
 			for col in row:
 				c += 1
@@ -21,6 +21,11 @@ class World:
 					c -= 5
 				if col == "p":
 					return r, c
+	def drawGrid(self):
+		rowNum = -1
+		for r in self.grid:
+			rowNum += 1
+			print(rowNum, "|", r)
 	def movePlayerUp():
 		#Changes location of 'p' in world arr
 		#New character representing traveled space "."
@@ -30,5 +35,4 @@ class World:
 		world[row][col] = "."
 		world[row-1][col] = "p"
 		print(world[row-1][col])
-
 		
