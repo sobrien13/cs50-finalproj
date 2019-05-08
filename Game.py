@@ -1,4 +1,7 @@
 #!/usr/bin/python
+#Handles all the database loading and interaction
+#Handles all essential UI
+#Should import enemy and world code
 import sqlite3
 connection = sqlite3.connect("save.db")
 c = connection.cursor()
@@ -29,6 +32,9 @@ def loadGame():
 	filename = input("Loading game...\nEnter savefile name ex: 'example'\n")
 	filename += ".db"
 	connection = sqlite3.connect(filename)
+#Maybe good idea to move character creation to separate file?
+#Is it possible to call Game.connection to reference the database?
+#	Maybe just reference Game.c to directly access cursor not sure how that works
 def initStats():
 	#Writes character stats to save.db
 	name = input("What is your name? ")
