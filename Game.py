@@ -2,13 +2,12 @@
 #Handles all the database loading and interaction
 #Handles all essential UI
 import sqlite3
-from Character import *
-from Enemy import *
 from World import *
+from Battle import *
 class Game:
 	connection = sqlite3.connect("save.db")
 	c = connection.cursor()
-	def main():
+	def startMenu():
 		print("Py/Sqlite Text Based RPG.")
 		print("1: New Game")
 		print("2: Load Game")
@@ -29,11 +28,12 @@ class Game:
 			exit()
 	def startNewGame():
 		print("Starting new game...")
-		Character.initStats()
+		battle = Battle()
+		
 	def loadGame():
 		filename = input("Loading game...\nEnter savefile name ex: 'example'\n")
 		filename += ".db"
 		connection = sqlite3.connect(filename)
 	w = World()
 	w.drawGrid()
-	main()
+	startMenu()

@@ -1,5 +1,4 @@
 #!/usr/bin/python
-
 # import appropriate libraries
 import random
 import sqlite3
