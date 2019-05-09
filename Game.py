@@ -28,7 +28,7 @@ class Game:
 			exit()
 	def startNewGame():
 		print("Starting new game...")
-		battle = Battle()
+		
 	def loadGame():
 		filename = input("Loading game...\nEnter savefile name ex: 'example'\n")
 		filename += ".db"
