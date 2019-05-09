@@ -4,9 +4,10 @@ import random
 import sqlite3
 # pre-battle setup
 # import DB and player stat table
+# * Creates Battle() object b -> call startBattle with b.startBattle()
 class Battle:
 	playerHp = 100 #placeholder value
-	enemyBaseHealth = playerHp * (random.randint(1, 6) * 1.15)
+	enemyBaseHealth = playerHp * (1.15)
 	enemies = [
 		{'name' : "Golem", 'hp' : enemyBaseHealth * 1.04, 'dmg' : random.uniform(0.15, 0.22)}, #enemies[0].name -> Golem
 		{'name' : "Troll", 'hp' : enemyBaseHealth * 1.08, 'dmg' : random.uniform(0.16, 0.23)},
@@ -15,23 +16,27 @@ class Battle:
 		{'name' : "?YouCan'tWin?", 'hp' : enemyBaseHealth * 2, 'dmg' : random.uniform(0.3, 0.4)},
 	]
 	def __init__(self):
-		e = random.randint(1, 6)
-		self.hp = enemies[e].hp
-		self.name = enemies[e].name
-		self.dmg = playerHp * enemies[e].dmg
-		startBattle()
-	def startBattle():
-		print("From the shadows emerges a", name)
+		e = random.randint(0, 4)
+		self.hp = self.enemies[e]['hp']
+		self.name = self.enemies[e]['name']
+		self.dmg = self.playerHp * self.enemies[e]['dmg']
+	def startBattle(self):
+		print("From the shadows emerges a", self.name)
 		#evantual function for move choice
-		while self.hp > 0 and playerHp > 0:
-			moves = ["Punch", "Block"] # skill table needed
-			for i in moves:
-				print(moves[i], "\n")
-			attack = input("What will you do?: ").lower()
+		while self.hp > 0 and self.playerHp > 0:
+			#skill table needed
+			attack = input("What will you do? (Punch, Block): ").lower()
 			if attack == "punch":
-				hp -= 25 #placeholder value
-				print(name, "punched for", 25, "damage.\n")
+				self.hp -= 25 #placeholder value
+				print(self.name, "punched for", 25, "damage.\n")
+				self.playerHp -= self.dmg
 			elif attack == "block":
 				print("You are blocking the next attack.\n")
-			playerHp -= dmg
-			print("Enemy attacks you for", dmg, "damage!\nYour hp:", playerHp, "\n")
+				self.dmg *= 0.5
+				self.playerHp -= self.dmg
+			if attack == "block":
+				print("Enemy attacks you for", self.dmg, "damage!\nYour hp:", self.playerHp, "\n")
+				self.dmg *=2
+			else:
+				print("Enemy attacks you for", self.dmg, "damage!\nYour hp:", self.playerHp, "\n")
+			print(self.name, "hp:", self.hp)
