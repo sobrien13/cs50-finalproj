@@ -1,4 +1,4 @@
-#!/bin/us/python3
+#!/usr/bin/python3
 
 # import appropriate libraries
 import random
@@ -27,7 +27,7 @@ enemyStats()
 List = ["Golem", "Troll", "Orc", "Ghost", "Mummy", "Goblin"]
 
 
-def battle():
+def battle():	# I feel like battle should be its own class so we can reference the all tables from a single file
 	print("You have now entered a battle!")
 	e = random.randint(1, 6)
 	print("From the shadows emerges a", List[e])
