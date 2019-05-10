@@ -37,9 +37,8 @@ class Battle:
 					self.playerHp -= self.dmg
 				else: 
 					self.hp -= 25 #placeholder value
-                                	print(self.name, "punched for", 25, "damage.\n")
-                                	self.playerHp -= self.dmg
-
+                    print(self.name, "punched for", 25, "damage.\n")
+                    self.playerHp -= self.dmg
 			elif attack == "block":
 				print("You are blocking the next attack.\n")
 				self.dmg *= 0.5
@@ -49,5 +48,5 @@ class Battle:
 				self.dmg *=2
 			else:
 				print("Enemy attacks you for", self.dmg, "damage!\nYour hp:", self.playerHp, "\n")
-			print(self.name, "hp:", self.hp)
+				print(self.name, "hp:", self.hp)
 

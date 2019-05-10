@@ -55,6 +55,7 @@ class Character:
 	def getCurrent(self):
 		#Prints the current character's stats based on the charID
 		#referenced using getCurrent['x'] syntax
+		self.c.execute("select * from Character where id = ?", (self.charId,))
 		rows = self.c.fetchall()
 		CHAR_ID = 0
 		CHAR_NAME = ""
@@ -71,7 +72,6 @@ class Character:
 			CHAR_HP = r[4]
 			CHAR_ROW = r[5]
 			CHAR_COL = r[6]
-		self.c.execute("select * from Character where id = ?", (self.charId,))
 		stats = {
 			"id" : CHAR_ID,
 			"name" : CHAR_NAME,
