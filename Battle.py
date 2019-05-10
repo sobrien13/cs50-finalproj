@@ -30,9 +30,16 @@ class Battle:
 			# move and damage values are placeholders
 			attack = input("What will you do? (Punch, Block): ").lower()
 			if attack == "punch":
-				self.hp -= 25 #placeholder value
-				print(self.name, "punched for", 25, "damage.\n")
-				self.playerHp -= self.dmg
+				f = random.randint(0, 6)
+				if f == (5,6):
+					self.hp -= 25 #placeholder value
+					print(self.name, "punched for", 25 * 2, "damage.\n")
+					self.playerHp -= self.dmg
+				else: 
+					self.hp -= 25 #placeholder value
+                                	print(self.name, "punched for", 25, "damage.\n")
+                                	self.playerHp -= self.dmg
+
 			elif attack == "block":
 				print("You are blocking the next attack.\n")
 				self.dmg *= 0.5
@@ -43,3 +50,4 @@ class Battle:
 			else:
 				print("Enemy attacks you for", self.dmg, "damage!\nYour hp:", self.playerHp, "\n")
 			print(self.name, "hp:", self.hp)
+
