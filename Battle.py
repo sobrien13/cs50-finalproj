@@ -2,6 +2,9 @@
 import random
 import sqlite3
 # * Creates Battle() object b -> call startBattle with b.startBattle()
+# To-do to this file
+	# * start battle pulls list of moves from database
+	# * can either store this in Character table or other table
 class Battle:
 	playerHp = 100 #placeholder value
 	enemyBaseHealth = playerHp * (1.15)
