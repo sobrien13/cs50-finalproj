@@ -2,3 +2,4 @@
 from Game import *
 g = Game()
 g.startMenu()
+g.doMenu()

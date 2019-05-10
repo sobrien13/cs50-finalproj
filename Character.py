@@ -1,10 +1,11 @@
 #!/usr/bin/python
 import sqlite3
-from World import *
+from Map import *
 # * Creates Character(charId) class for evantually loading from database and creating new characters.
 class Character:
 	connection = sqlite3.connect("save.db")
 	c = connection.cursor()
+	m = Map()
 	def __init__(self, charId):
 		self.charId = charId
 	def createTable(self):
@@ -23,7 +24,7 @@ class Character:
 		self.c.execute("insert into Character (id, name, strength, agi, hp) values(?, ?, ?, ?, ?)", (self.charId, self.name, self.strength, self.agi, self.hp))
 
 	def savePosition():
-		currentPos = world.getPlayerPos()
+		currentPos = m.getPlayerPos()
 		row = currentPos[0]
 		col = currentPos[1]
 		c.execute("insert into Character (gridRow, col) values(?, ?)", (row, col))

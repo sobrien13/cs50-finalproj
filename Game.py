@@ -2,13 +2,14 @@
 #Handles all the database loading and interaction
 #Handles all essential UI
 import sqlite3
-from World import *
+from Map import *
 from Battle import *
 from Character import *
 class Game:
 	connection = sqlite3.connect("save.db")
 	c = connection.cursor()
 	ch = Character(1)
+	m = Map()
 	def __init__(self):
 		print("Py/Sqlite Text Based RPG.")
 	def startMenu(self):
@@ -28,6 +29,26 @@ class Game:
 			self.loadGame()
 		else:
 			exit()
+	def doMenu(self):
+		print("What do you want to do?\n")
+		print("1: View map")
+		print("2: Move")
+		print("3: Exit")
+		a = int(input("Choose one.\n"))
+		while a > 3 or a < 1:
+			print("1: View Map")
+			print("2: Move")
+			print("3: Exit")
+			a = int(input("Choose one.\n"))
+		if a == 1:
+			self.viewMap()
+		elif a == 2:
+			self.m.movePlayer()
+		else:
+			exit()
+	def viewMap(self):
+		print("Your location in map:", m.getPlayerPos())
+		m.drawGrid()
 	def startNewGame(self):
 		print("Starting new game...")
 		self.ch.createTable()

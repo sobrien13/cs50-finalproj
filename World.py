@@ -3,7 +3,7 @@
 #Player position should probably be stored in 'save.db' and loaded through Game.py
 #Evantual integration with enemy code to determine when/where battles begin
 #Could store positions of enemy as integers row and col in 'save.db'
-class World:
+class Map:
 	def __init__(self, playerAtRow=1, playerAtCol=2):
 		#instance variable grid
 		#world initialized with saved playerdata
@@ -61,7 +61,7 @@ class World:
 	def movePlayer(byRow, byCol):
 		row = getPlayerPos()[0]
 		col = getPlayerPos()[1]
-		self.grid[row][col] = "."
+		self.grid[row][col] = "." # tiles already travelled notated with a .
 		self.grid[row+byRow][col+byCol] = "p"
 	def movePlayerUp():
 		movePlayer(-1,0)
