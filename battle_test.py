@@ -21,13 +21,14 @@ def enemyStats():
 	
 	connection.commit()
 
-enemyStats()
+
 
 #list of possible enemies
 List = ["Golem", "Troll", "Orc", "Ghost", "Mummy", "Goblin"]
 
 
 def battle():
+	enemyStats()
 	print("You have now entered a battle!")
 	e = random.randint(1, 6)
 	print("From the shadows emerges a", List[e])
