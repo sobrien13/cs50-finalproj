@@ -43,12 +43,28 @@ class Game:
 		if a == 1:
 			self.viewMap()
 		elif a == 2:
-			self.m.movePlayer()
+			self.moveMenu()
 		else:
 			exit()
+	def moveMenu(self):
+		print("Move\n1: Up\n2: Down\n3: Right\n4: Left\n5: Exit Game")
+		a = int(input("Choose one."))
+		while a > 5 or a < 1:
+			print("Move\n1: Up\n2: Down\n3: Right\n4: Left\n5: Exit Game")
+			a = int(input("Choose one."))
+		if a == 1:
+			self.m.movePlayerUp()
+		elif a == 2:
+			self.m.movePlayerDown()
+		elif a == 3:
+			self.m.movePlayerRight()
+		elif a == 4:
+			self.m.movePlayerLeft()
+		elif a == 5:
+			exit()
 	def viewMap(self):
-		print("Your location in map:", m.getPlayerPos())
-		m.drawGrid()
+		print("Your location in map:", self.m.getPlayerPos())
+		self.m.drawGrid()
 	def startNewGame(self):
 		print("Starting new game...")
 		self.ch.createTable()
