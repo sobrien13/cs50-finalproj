@@ -16,7 +16,7 @@ class Character:
 			print("Character table already exists.")
 		else:
 			print("Creating Character table.")
-			self.c.execute("create table Character (id, name, strength, agi, hp, gridRow, gridCol)")
+			self.c.execute("create table Character (id, name, strength, agi, hp, exp, gridRow, gridCol)")
 	def isInTable(self):
 		self.c.execute("select count(id) from Character")
 		n = self.c.fetchone()[0]
@@ -30,6 +30,7 @@ class Character:
 		print(n+1)
 		return n+1
 	def initStats(self):
+		self.exp = 0
 		#Writes character stats to save.db
 		self.name = input("What is your name? ")
 		self.hp = 100
@@ -40,7 +41,7 @@ class Character:
 		print("%s skill points remain.\n" % pts)
 		self.agi = int(input("Enter %s\'s AGILITY stat (1-10) \n" % self.name))
 		pts -= self.agi
-		self.c.execute("insert into Character (id, name, strength, agi, hp) values(?, ?, ?, ?, ?)", (self.charId, self.name, self.strength, self.agi, self.hp))
+		self.c.execute("insert into Character (id, name, strength, agi, hp, exp) values(?, ?, ?, ?, ?, ?)", (self.charId, self.name, self.strength, self.agi, self.hp, self.exp))
 		self.connection.commit()
 	def savePosition(self, row, col):
 		self.c.execute("update Character set gridRow = ? where id = ?", (row, self.charId))
@@ -51,7 +52,14 @@ class Character:
 		self.c.execute("select * from Character")
 		rows = self.c.fetchall()
 		for r in rows:
-			print(r[0], ")", "Name:", r[1], "STR:", r[2], "AGI:", r[3], "HP:", r[4], "R:", r[5], "C:", r[6])
+			print(r[0], ")", "Name:", r[1], "STR:", r[2], "AGI:", r[3], "HP:", r[4], "R:", r[5], "C:", r[6], "EXP:", r[7])
+	def deleteCurrentCharacter(self):
+		self.c.execute("delete from Character where id = ?", (self.charId,))
+		self.charId -= 1
+		self.connection.commit()
+	def addExp(self, exp):
+		self.c.execute("update Character set exp = ? where id = ?", (exp, self.charId))
+		self.connection.commit()
 	def getCurrent(self):
 		#Prints the current character's stats based on the charID
 		#referenced using getCurrent['x'] syntax
@@ -64,6 +72,7 @@ class Character:
 		CHAR_HP = 0
 		CHAR_ROW = 0
 		CHAR_COL = 0
+		CHAR_EXP = 0
 		for r in rows:
 			CHAR_ID = r[0]
 			CHAR_NAME = r[1]
@@ -72,6 +81,7 @@ class Character:
 			CHAR_HP = r[4]
 			CHAR_ROW = r[5]
 			CHAR_COL = r[6]
+			CHAR_EXP = r[7]
 		stats = {
 			"id" : CHAR_ID,
 			"name" : CHAR_NAME,
@@ -79,7 +89,8 @@ class Character:
 			"agi" : CHAR_AGI,
 			"hp" : CHAR_HP,
 			"row" : CHAR_ROW,
-			"col" : CHAR_COL
+			"col" : CHAR_COL,
+			"exp" : CHAR_EXP
 		}
 		return stats
 	def numOfCharacters(self):

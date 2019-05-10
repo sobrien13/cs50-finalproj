@@ -51,8 +51,6 @@ class Map:
 					return True
 			return False
 	def shouldSpawnEnemy(self):
-		print(self.isDangerous(self.getPlayerPos()[0], self.getPlayerPos()[1]))
-		print(self.getPlayerPos()[0], self.getPlayerPos()[1])
 		if self.isDangerous(self.getPlayerPos()[0], self.getPlayerPos()[1]) == False:
 			self.b.startBattle()
 	def isDangerous(self, inRow, inCol):
