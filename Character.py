@@ -7,20 +7,20 @@ class Character:
 	c = connection.cursor()
 	def __init__(self, charId):
 		self.charId = charId
-	def createTable():
-		c.execute("create table Character (id, name, strength, agi, hp, gridRow, gridCol)")
-	def initStats():
+	def createTable(self):
+		self.c.execute("create table Character (id, name, strength, agi, hp, gridRow, gridCol)")
+	def initStats(self):
 		#Writes character stats to save.db
-		name = input("What is your name? ")
-		hp = 100
+		self.name = input("What is your name? ")
+		self.hp = 100
 		pts = 10
 		print("%s skill points remain.\n" % pts)
-		strength = int(input("Enter %s\'s STRENGTH stat (1-10) \n" % name))
-		pts -= strength
+		self.strength = int(input("Enter %s\'s STRENGTH stat (1-10) \n" % self.name))
+		pts -= self.strength
 		print("%s skill points remain.\n" % pts)
-		agi = int(input("Enter %s\'s AGILITY stat (1-10) \n" % name))
-		pts -= agi
-		c.execute("insert into Character values(?, ?, ?, ?)", (self.charId, name, strength, agi, hp))
+		self.agi = int(input("Enter %s\'s AGILITY stat (1-10) \n" % self.name))
+		pts -= self.agi
+		self.c.execute("insert into Character (id, name, strength, agi, hp) values(?, ?, ?, ?, ?)", (self.charId, self.name, self.strength, self.agi, self.hp))
 
 	def savePosition():
 		currentPos = world.getPlayerPos()

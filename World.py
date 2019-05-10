@@ -11,7 +11,7 @@ class World:
 			["~", "~", "~", "~", "~"], 
 			["~", "~", "~", "~", "~"], 
 			["~", "~", "~", "~", "~"], ]
-		while !isPlayerInWorld():
+		while isPlayerInWorld() != True:
 			drawPlayer(playerAtRow, playerAtCol)
 	def drawGrid():
 		print("0	1	2	3	4\n")

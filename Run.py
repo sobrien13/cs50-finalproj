@@ -1,3 +1,4 @@
 #!/usr/bin/python
-import Game
-Game.startMenu()
+from Game import *
+g = Game()
+g.startMenu()
