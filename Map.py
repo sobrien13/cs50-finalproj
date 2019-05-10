@@ -3,7 +3,9 @@
 #Player position should probably be stored in 'save.db' and loaded through Game.py
 #Evantual integration with enemy code to determine when/where battles begin
 #Could store positions of enemy as integers row and col in 'save.db'
+from Character import *
 class Map:
+	ch = Character()
 	def __init__(self):
 		#instance variable grid
 		#world initialized with saved playerdata
@@ -11,7 +13,10 @@ class Map:
 			["~", "~", "~", "~", "~"], 
 			["~", "~", "~", "~", "~"], 
 			["~", "~", "~", "~", "~"], ]
-		self.drawPlayer(1,2)
+		if self.ch.isInTable() == True:
+			self.drawPlayer(self.ch.getCurrent()['row'], self.ch.getCurrent()['col'])
+		else:
+			self.drawPlayer(1, 1)
 	def drawGrid(self):
 		print("    0 1 2 3 4")
 		rowNum = -1
@@ -49,7 +54,10 @@ class Map:
 		row = self.getPlayerPos()[0]
 		col = self.getPlayerPos()[1]
 		self.grid[row][col] = "." # tiles already travelled notated with a .
-		self.grid[row+byRow][col+byCol] = "p"
+		if row > 3 or col > 3:
+			print("Can't move there.")
+		else:
+			self.grid[row+byRow][col+byCol] = "p"
 	def movePlayerUp(self):
 		self.movePlayer(-1,0)
 	def movePlayerDown(self):

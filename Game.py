@@ -2,6 +2,7 @@
 #Handles all the database loading and interaction
 #Handles all essential UI
 import sqlite3
+from os import system
 from Map import *
 from Battle import *
 from Character import *
@@ -12,7 +13,7 @@ class Game:
 	m = Map()
 	def __init__(self):
 		print("Py/Sqlite Text Based RPG.")
-	def startMenu(self):
+	def start(self):
 		print("1: New Game")
 		print("2: Load Game")
 		print("3: Exit")
@@ -23,13 +24,15 @@ class Game:
 			print("3: Exit")
 			a = int(input("Choose one.\n"))
 		if a == 1:
-			self.startNewGame()
+			system('clear')
+			self.newGame()
 		elif a == 2:
+			system('clear')
 			self.loadGame()
 		else:
 			exit()
-	def doMenu(self):
-		print("What do you want to do?\n")
+	def doWhat(self):
+		print("What do you want to do,", self.ch.getCurrent().name, "?\n")
 		print("1: View map")
 		print("2: Move")
 		print("3: Main Menu")
@@ -40,16 +43,19 @@ class Game:
 			print("3: Main Menu")
 			a = int(input("Choose one.\n"))
 		if a == 1:
+			system('clear')
 			self.viewMap()
 		elif a == 2:
-			self.moveMenu()
+			system('clear')
+			self.move()
 		elif a == 3:
-			self.startMenu()
-	def moveMenu(self):
-		print("Move\n1: Up\n2: Down\n3: Right\n4: Left\n5: Exit Game")
+			system('clear')
+			self.start()
+	def move(self):
+		print("Move\n1: Up\n2: Down\n3: Right\n4: Left\n5: Go Back")
 		a = int(input("Choose one."))
 		while a > 5 or a < 1:
-			print("Move\n1: Up\n2: Down\n3: Right\n4: Left\n5: Exit Game")
+			print("Move\n1: Up\n2: Down\n3: Right\n4: Left\n5: Go Back")
 			a = int(input("Choose one."))
 		if a == 1:
 			self.m.movePlayerUp()
@@ -64,11 +70,11 @@ class Game:
 			self.m.movePlayerLeft()
 			self.ch.savePosition(self.m.getPlayerPos()[0], self.m.getPlayerPos()[1])
 		elif a == 5:
-			exit()
+			doWhat()
 	def viewMap(self):
 		print("Your location in map:", self.m.getPlayerPos())
 		self.m.drawGrid()
-	def startNewGame(self):
+	def newGame(self):
 		print("Starting new game...")
 		self.ch.initStats()
 	def loadGame(self):
