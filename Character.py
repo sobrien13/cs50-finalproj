@@ -65,34 +65,18 @@ class Character:
 		#referenced using getCurrent['x'] syntax
 		self.c.execute("select * from Character where id = ?", (self.charId,))
 		rows = self.c.fetchall()
-		CHAR_ID = 0
-		CHAR_NAME = ""
-		CHAR_STR = 0
-		CHAR_AGI = 0
-		CHAR_HP = 0
-		CHAR_ROW = 0
-		CHAR_COL = 0
-		CHAR_EXP = 0
 		for r in rows:
-			CHAR_ID = r[0]
-			CHAR_NAME = r[1]
-			CHAR_STR = r[2]
-			CHAR_AGI = r[3]
-			CHAR_HP = r[4]
-			CHAR_ROW = r[5]
-			CHAR_COL = r[6]
-			CHAR_EXP = r[7]
-		stats = {
-			"id" : CHAR_ID,
-			"name" : CHAR_NAME,
-			"stre" : CHAR_STR,
-			"agi" : CHAR_AGI,
-			"hp" : CHAR_HP,
-			"row" : CHAR_ROW,
-			"col" : CHAR_COL,
-			"exp" : CHAR_EXP
-		}
-		return stats
+			stats = {
+			"id" : r[0],
+			"name" : r[1],
+			"stre" : r[2],
+			"agi" : r[3],
+			"hp" : r[4],
+			"row" : r[5],
+			"col" : r[6],
+			"exp" : r[7]
+			}
+			return stats
 	def numOfCharacters(self):
 		self.c.execute("select count(id) from Character")
 		n = self.c.fetchone()[0]
