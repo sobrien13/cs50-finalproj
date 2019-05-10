@@ -4,9 +4,11 @@
 import sqlite3
 from World import *
 from Battle import *
+from Character import *
 class Game:
 	connection = sqlite3.connect("save.db")
 	c = connection.cursor()
+	ch = Character(1)
 	def startMenu():
 		print("Py/Sqlite Text Based RPG.")
 		print("1: New Game")
@@ -28,11 +30,9 @@ class Game:
 			exit()
 	def startNewGame():
 		print("Starting new game...")
-		
+		ch.createTable()
+		ch.initStats()
 	def loadGame():
 		filename = input("Loading game...\nEnter savefile name ex: 'example'\n")
 		filename += ".db"
 		connection = sqlite3.connect(filename)
-	w = World()
-	w.drawGrid()
-	startMenu()

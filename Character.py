@@ -7,7 +7,6 @@ class Character:
 	c = connection.cursor()
 	def __init__(self, charId):
 		self.charId = charId
-
 	def createTable():
 		c.execute("create table Character (id, name, strength, agi, hp, gridRow, gridCol)")
 	def initStats():
