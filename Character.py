@@ -1,33 +1,34 @@
 #!/usr/bin/python
 import sqlite3
-import Game
-from World import *
-#Handles all character related definitions
+from Map import *
+# * Creates Character(charId) class for evantually loading from database and creating new characters.
 class Character:
-	connection = Game.connection
+	connection = sqlite3.connect("save.db")
 	c = connection.cursor()
-	createTable = c.execute("create table Character (name, strength, agi, intel, rowInGrid, colInGrid)")
-	world = World()
-	def initStats():
+	m = Map()
+	def __init__(self, charId):
+		self.charId = charId
+	def createTable(self):
+		self.c.execute("create table Character (id, name, strength, agi, hp, gridRow, gridCol)")
+	def initStats(self):
 		#Writes character stats to save.db
-		name = input("What is your name? ")
-		pts = 15
+		self.name = input("What is your name? ")
+		self.hp = 100
+		pts = 10
 		print("%s skill points remain.\n" % pts)
-		strength = int(input("Enter %s\'s STRENGTH stat (1-10) \n" % name))
-		pts -= strength
+		self.strength = int(input("Enter %s\'s STRENGTH stat (1-10) \n" % self.name))
+		pts -= self.strength
 		print("%s skill points remain.\n" % pts)
-		agi = int(input("Enter %s\'s AGILITY stat (1-10) \n" % name))
-		pts -= agi
-		print("%s skill points remain.\n" % pts)
-		intel = int(input("Enter %s\'s INTELLIGENCE stat (1-10) \n" % name))
-		pts -= intel
-		print("%s skill points remain.\n" % pts)
-		c.execute("insert into Character values(?, ?, ?, ?)", (name, strength, agi, intel))
+		self.agi = int(input("Enter %s\'s AGILITY stat (1-10) \n" % self.name))
+		pts -= self.agi
+		self.c.execute("insert into Character (id, name, strength, agi, hp) values(?, ?, ?, ?, ?)", (self.charId, self.name, self.strength, self.agi, self.hp))
+
 	def savePosition():
-		currentPos = world.getPlayerPos()
+		currentPos = m.getPlayerPos()
 		row = currentPos[0]
 		col = currentPos[1]
-		c.execute("insert into Character(rowInGrid, colInGrid)", (row, col))
+		c.execute("insert into Character (gridRow, col) values(?, ?)", (row, col))
+
 	def printStats():
 		#Prints stats of all characters in save.db
 		c.execute("select * from Character")
