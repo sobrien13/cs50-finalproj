@@ -12,14 +12,12 @@ class Map:
 			["~", "~", "~", "~", "~"], 
 			["~", "~", "~", "~", "~"], ]
 		self.drawPlayer(1,2)
-		
 	def drawGrid(self):
 		print("    0 1 2 3 4")
 		rowNum = -1
 		for r in self.grid:
 			rowNum += 1
 			print(rowNum, "|", r[0], r[1], r[2], r[3], r[4])
-
 	def getPlayerPos(self):
 		#Returns tuple which contains player position
 		#Should return 1,2
@@ -33,7 +31,6 @@ class Map:
 					c -= 5
 				if col == "p":
 					return r, c
-
 	def isPlayerInWorld(self):
 		r = -1
 		c = -1
@@ -46,7 +43,6 @@ class Map:
 				if col == "p":
 					return True
 			return False
-
 	def drawPlayer(self, r, c):
 		self.grid[r][c] = "p"
 	def movePlayer(self, byRow, byCol):
