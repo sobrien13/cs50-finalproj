@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import sqlite3
-# * Creates Character(charId) class for evantually loading from database and creating new characters.
+#Handles all character database interaction
+#
 class Character:
 	connection = sqlite3.connect("save.db")
 	c = connection.cursor()
@@ -52,7 +53,8 @@ class Character:
 		for r in rows:
 			print(r[0], ")", "Name:", r[1], "STR:", r[2], "AGI:", r[3], "HP:", r[4], "R:", r[5], "C:", r[6])
 	def getCurrent(self):
-		#Prints the current character's stats
+		#Prints the current character's stats based on the charID
+		#referenced using getCurrent['x'] syntax
 		rows = self.c.fetchall()
 		CHAR_ID = 0
 		CHAR_NAME = ""

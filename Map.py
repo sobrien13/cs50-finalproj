@@ -4,19 +4,21 @@
 #Evantual integration with enemy code to determine when/where battles begin
 #Could store positions of enemy as integers row and col in 'save.db'
 from Character import *
+from Battle import *
 class Map:
 	ch = Character()
+	b = Battle()
 	def __init__(self):
 		#instance variable grid
 		#world initialized with saved playerdata
-		self.grid = 	[["~", "~", "~", "~", "~"], 
-			["~", "~", "~", "~", "~"], 
-			["~", "~", "~", "~", "~"], 
-			["~", "~", "~", "~", "~"], ]
+		self.grid = 	[["#", "~", "~", "#", "~"], 
+			["#", "~", "~", "~", "~"], 
+			["~", "~", "#", "~", "~"], 
+			["~", "#", "~", "~", "#"], ]
 		if self.ch.isInTable() == True:
 			self.drawPlayer(self.ch.getCurrent()['row'], self.ch.getCurrent()['col'])
 		else:
-			self.drawPlayer(1, 1)
+			self.drawPlayer(1, 2)
 	def drawGrid(self):
 		print("    0 1 2 3 4")
 		rowNum = -1
@@ -47,6 +49,16 @@ class Map:
 					c -= 5
 				if col == "p":
 					return True
+			return False
+	def shouldSpawnEnemy(self):
+		print(self.isDangerous(self.getPlayerPos()[0], self.getPlayerPos()[1]))
+		print(self.getPlayerPos()[0], self.getPlayerPos()[1])
+		if self.isDangerous(self.getPlayerPos()[0], self.getPlayerPos()[1]) == False:
+			self.b.startBattle()
+	def isDangerous(self, inRow, inCol):
+		if self.grid[inRow][inCol] == "#":
+			return True
+		else:
 			return False
 	def drawPlayer(self, r, c):
 		self.grid[r][c] = "p"

@@ -1,10 +1,8 @@
 #!/usr/bin/python
-#Handles all the database loading and interaction
 #Handles all essential UI
 import sqlite3
 from os import system
 from Map import *
-from Battle import *
 from Character import *
 class Game:
 	connection = sqlite3.connect("save.db")
@@ -32,7 +30,7 @@ class Game:
 		else:
 			exit()
 	def doWhat(self):
-		print("What do you want to do,", self.ch.getCurrent().name, "?\n")
+		print("What do you want to do,", self.ch.getCurrent()['name'], "?\n")
 		print("1: View map")
 		print("2: Move")
 		print("3: Main Menu")
@@ -59,18 +57,21 @@ class Game:
 			a = int(input("Choose one."))
 		if a == 1:
 			self.m.movePlayerUp()
-			self.ch.savePosition(self.m.getPlayerPos()[0], self.m.getPlayerPos()[1])
+			self.update()
 		elif a == 2:
 			self.m.movePlayerDown()
-			self.ch.savePosition(self.m.getPlayerPos()[0], self.m.getPlayerPos()[1])
+			self.update()
 		elif a == 3:
 			self.m.movePlayerRight()
-			self.ch.savePosition(self.m.getPlayerPos()[0], self.m.getPlayerPos()[1])
+			self.update()
 		elif a == 4:
 			self.m.movePlayerLeft()
-			self.ch.savePosition(self.m.getPlayerPos()[0], self.m.getPlayerPos()[1])
+			self.update()
 		elif a == 5:
 			doWhat()
+	def update(self):
+		self.ch.savePosition(self.m.getPlayerPos()[0], self.m.getPlayerPos()[1])
+		self.m.shouldSpawnEnemy()
 	def viewMap(self):
 		print("Your location in map:", self.m.getPlayerPos())
 		self.m.drawGrid()

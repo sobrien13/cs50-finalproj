@@ -1,13 +1,14 @@
 #!/usr/bin/python
 import random
 import sqlite3
+from Character import *
 # * Creates Battle() object b -> call startBattle with b.startBattle()
 # To-do to this file
 	# * start battle pulls list of moves from database
 	# * can either store this in Character table or other table
 class Battle:
-	playerHp = 100 #placeholder value
-	enemyBaseHealth = playerHp * (1.15)
+	ch = Character()
+	enemyBaseHealth = 115
 	enemies = [
 		{'name' : "Golem", 'hp' : enemyBaseHealth * 1.04, 'dmg' : random.uniform(0.15, 0.22)}, #enemies[0].name -> Golem
 		{'name' : "Troll", 'hp' : enemyBaseHealth * 1.08, 'dmg' : random.uniform(0.16, 0.23)},
@@ -17,13 +18,14 @@ class Battle:
 	]
 	def __init__(self):
 		e = random.randint(0, 4)
+		self.playerHp = 100 #placeholder val
 		self.hp = int(self.enemies[e]['hp'])
 		self.name = self.enemies[e]['name']
 		self.dmg = int(self.playerHp * self.enemies[e]['dmg'])
 	def startBattle(self):
 		print("From the shadows emerges a", self.name)
 		#evantual function for move choice
-		while self.hp > 0 and self.playerHp > 0:
+		while 1:
 			#skill table needed
 			# move and damage values are placeholders
 			attack = input("What will you do? (Punch, Block): ").lower()
