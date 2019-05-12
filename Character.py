@@ -88,6 +88,7 @@ class Character:
 		# insert starting moves and damage 35% of Strength, block is equal to full agility and will be used to roll for dodge
 		self.c.execute("insert into attacks (attacks_id, name, damage) values (1, "Punch", (select strength from Character) * 0.35)")
 		self.c.execute("insert into attacks (attacks_id, name, damage) values (2, "Block", (select agi from Character))")
+		self.connection.commit()
 
 
 
