@@ -81,3 +81,14 @@ class Character:
 		self.c.execute("select count(id) from Character")
 		n = self.c.fetchone()[0]
 		return n
+	# Create table to store character attacks moves/can be added to when char lvls up
+	# ID for calling, name for display, dmg based on STR 
+	def characterAttacks(self):
+		self.c.execute("create table attacks(attacks_id numeric(2), name varchar(25), damage numeric(10))")
+		# insert starting moves and damage 35% of Strength, block is equal to full agility and will be used to roll for dodge
+		self.c.execute("insert into attacks (attacks_id, name, damage) values (1, "Punch", (select strength from Character) * 0.35)")
+		self.c.execute("insert into attacks (attacks_id, name, damage) values (2, "Block", (select agi from Character))")
+
+
+
+
