@@ -68,7 +68,7 @@ class Game:
 			self.m.movePlayerLeft()
 			self.update()
 		elif a == 5:
-			doWhat()
+			self.doWhat()
 	def update(self):
 		# unsure as to why the getPlayerPos() method is returning None
 		self.ch.savePosition(self.m.getPlayerPos()[0], self.m.getPlayerPos()[1])
@@ -80,9 +80,11 @@ class Game:
 		print("Starting new game...")
 		self.ch.initStats()
 	def loadGame(self):
-		print("All characters currently in savefile:")
+		print("All characters currently in savefile:\n0 ) Back to Main Menu")
 		self.ch.printStats()
 		a = int(input("Choose one."))
-		while a > self.ch.numOfCharacters() or a < 1:
+		while a > self.ch.numOfCharacters() or a < 0:
 			a = int(input("Choose one."))
+		if(a == 0):
+			self.start()
 		self.ch.charId = a
