@@ -1,6 +1,9 @@
 #!/usr/bin/python
 import sqlite3
 #Handles all character database interaction
+# Main contributors:
+# - Jason Braeu
+# - Sean O'Brien
 #
 class Character:
 	connection = sqlite3.connect("save.db")

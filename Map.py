@@ -1,4 +1,7 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
+#Main contributors:
+# - Sean O'Brien
+#
 #Establishes communication with Game.py
 #Player position should probably be stored in 'save.db' and loaded through Game.py
 #Evantual integration with enemy code to determine when/where battles begin
