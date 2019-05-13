@@ -70,6 +70,7 @@ class Game:
 		elif a == 5:
 			doWhat()
 	def update(self):
+		# unsure as to why the getPlayerPos() method is returning None
 		self.ch.savePosition(self.m.getPlayerPos()[0], self.m.getPlayerPos()[1])
 		self.m.shouldSpawnEnemy()
 	def viewMap(self):
