@@ -9,13 +9,9 @@ class Character:
 		self.initTable()
 		self.charId = self.getNewCharId()
 		self.stats = self.getCurrent()
-		print("Char ID:", self.charId)
 	def initTable(self):
 		self.c.execute("select count(name) from sqlite_master where type='table' and name='Character'")
-		if self.c.fetchone()[0] == 1:
-			print("Character table already exists.")
-		else:
-			print("Creating Character table.")
+		if self.c.fetchone()[0] != 1:
 			self.c.execute("create table Character (id, name, strength, agi, hp, exp, gridRow, gridCol)")
 	def isInTable(self):
 		self.c.execute("select count(id) from Character")
@@ -27,7 +23,6 @@ class Character:
 	def getNewCharId(self):
 		self.c.execute("select count(id) from Character")
 		n = self.c.fetchone()[0]
-		print(n+1)
 		return n+1
 	def initStats(self):
 		self.exp = 0

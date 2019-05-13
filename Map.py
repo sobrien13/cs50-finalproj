@@ -11,12 +11,13 @@ class Map:
 	def __init__(self):
 		#instance variable grid
 		#world initialized with saved playerdata
-		self.grid = 	[["#", "~", "~", "#", "~"], 
-			["#", "~", "~", "~", "~"], 
-			["~", "~", "#", "~", "~"], 
-			["~", "#", "~", "~", "#"], ]
+		self.grid = 	[["#", "~", "~", "#", "~"],
+						["#", "~", "~", "~", "~"],
+						["~", "~", "#", "~", "~"],
+						["~", "#", "~", "~", "#"], ]
 		if self.ch.isInTable() == True:
-			self.drawPlayer(self.ch.getCurrent()['row'], self.ch.getCurrent()['col'])
+			self.drawPlayer(1, 2)
+		#	self.drawPlayer(self.ch.getCurrent()['row'], self.ch.getCurrent()['col'])
 		else:
 			self.drawPlayer(1, 2)
 	def drawGrid(self):
@@ -75,4 +76,4 @@ class Map:
 	def movePlayerRight(self):
 		self.movePlayer(0,1)
 	def movePlayerLeft(self):
-		self.movePlayer(0,-1)	
+		self.movePlayer(0,-1)
