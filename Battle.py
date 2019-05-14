@@ -1,11 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 import random
 import sqlite3
 from Character import *
 # Main contributors:
 # - Alex Underwood
 # - Sean O'Brien
-#
+# - Jason Braeu
 # * Creates Battle() object b -> call startBattle with b.startBattle()
 # To-do to this file
 	# * start battle pulls list of moves from database

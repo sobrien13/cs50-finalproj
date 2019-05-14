@@ -14,6 +14,7 @@ class Game:
 	m = Map()
 	def __init__(self):
 		print("Py/Sqlite Text Based RPG.")
+		self.start()
 	def start(self):
 		print("1: New Game")
 		print("2: Load Game")
