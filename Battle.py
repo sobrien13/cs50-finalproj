@@ -61,6 +61,3 @@ class Battle:
 				print("You died to the", self.name, "- Better luck next time.")
 				self.ch.deleteCurrentCharacter()
 				exit()
-
-
-
