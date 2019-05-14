@@ -1,9 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 #Handles all essential UI
 # Main contributors:
 # - Sean O'Brien
 # - Alex Underwood
-# - Jason Braeu
 import sqlite3
 from os import system
 from Map import *
