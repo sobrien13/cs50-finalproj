@@ -3,7 +3,7 @@ import random
 import sqlite3
 from Character import *
 # Main contributors:
-# - Alex Underwood 
+# - Alex Underwood
 # - Sean O'Brien
 #
 # * Creates Battle() object b -> call startBattle with b.startBattle()
@@ -18,7 +18,7 @@ class Battle:
 		{'name' : "Troll", 'hp' : enemyBaseHealth * 1.08, 'dmg' : random.uniform(0.16, 0.23), 'exp' : 500},
 		{'name' : "Orc", 'hp' : enemyBaseHealth * 1.1, 'dmg' : random.uniform(0.18, 0.23), 'exp' : 550},
 		{'name' : "Ghost", 'hp' : enemyBaseHealth * 0.4, 'dmg' : random.uniform(0.3, 0.32), 'exp' : 600},
-		{'name' : "?YouCan'tWin?", 'hp' : enemyBaseHealth * 2, 'dmg' : random.uniform(0.3, 0.4), 'exp' : 1500},
+		{'name' : "Skeleton", 'hp' : enemyBaseHealth * 1.2, 'dmg' : random.uniform(0.3, 0.4), 'exp' : 1500},
 	]
 	def __init__(self):
 		e = random.randint(0, 4)
@@ -40,7 +40,7 @@ class Battle:
 					self.hp -= 25 #placeholder value
 					print(self.name, "punched for", 25 * 2, "damage.\n")
 					self.playerHp -= self.dmg
-				else: 
+				else:
 					self.hp -= 25 #placeholder value
 					print(self.name, "punched for", 25, "damage.\n")
 					self.playerHp -= self.dmg
@@ -60,7 +60,7 @@ class Battle:
 			if self.playerHp <= 0:
 				print("You died to the", self.name, "- Better luck next time.")
 				self.ch.deleteCurrentCharacter()
-				exit()		
+				exit()
 
 
 
